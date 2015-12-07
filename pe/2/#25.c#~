@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main() {
+    int target;
+    int powNum;
+
+    target = 1;
+    scanf("%d", &powNum);
+    if (1 <= powNum && powNum <= 30) {
+	printf("2^%d = %d\n", powNum, target << powNum);
+    } else {
+	printf("Input data is range to 30 from 1.");
+    }
+    
+    return 0;
+}
