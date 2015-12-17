@@ -1,0 +1,41 @@
+プログラミング演習 第5回 レポート課題
+B151235 山下直哉
+課題番号 1
+
+1. 端末での入出力
+**********
+60-202:~/Develop/5 conao$ ./51.o
+Input a string
+This program is free software; you can redistribute it and/or modify
+THIS PROGRAM IS FREE SOFTWARE; YOU CAN REDISTRIBUTE IT AND/OR MODIFY
+
+2. プログラムの説明
+*********
+#include<stdio.h>
+
+char mytoupper(char c){
+    c -= 'a' - 'A';
+    return c;
+}
+
+int main(){
+    char c;
+
+    printf("Input a string\n");
+    while ((c = getchar()) != '\n') {
+        if ('a' <= c && c <= 'z') {
+            // aからzの文字の時だけmytoupperを呼ぶ
+            printf("%c", mytoupper(c));            
+        } else {
+            // aからzの文字以外の時はそのまま表示する
+            printf("%c", c);
+        }
+    }
+    printf("\n");
+    return 0;
+}
+
+3. コメント
+*********
+aからzの文字の時だけmytoupperを呼ぶようにプログラムを修正した
+
