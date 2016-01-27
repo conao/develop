@@ -1,7 +1,0 @@
-printfによって出力している。
-printfを２回記述するのはありふれた方法かと思い、１つのprintfによって同じ動作をするプログラムを作成した。
-
-[実行結果]
-b151235@imc2e-042:~/Develop$ ./a.out 
-Higashi Hiroshima
-Hiroshima, Japan
