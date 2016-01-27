@@ -1,0 +1,32 @@
+プログラミング序説第２回レポート課題
+B151235 山下直哉
+課題番号 d
+
+1. 端末での入出力
+**********
+b151235@imc2e-042:/fs/home2/b151235/Develop/pj/2$ ./r2d
+Faculty of Engineering,
+   Hiroshima University
+
+2. プログラムの説明
+*********
+// printf関数を使用するために必要
+#include <stdio.h>
+
+// int型を返すmain関数の宣言
+int main() {
+    // printf関数. ""で囲まれた文字列を端末に出力する.
+    // \nは改行コードを意味する.
+    printf("Faculty of Engineering,\n   Hiroshima University\n");
+
+    // main関数の正常終了
+    return 0;
+}
+
+
+3. コメント
+*********
+printf関数を１回使用して要求された出力を実現した。
+実現したいテキストを打った後、改行コードを「\n」で置き換えることで
+printf関数に渡す引数を作成した。
+

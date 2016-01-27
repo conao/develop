@@ -1,0 +1,72 @@
+\documentstyle[a4,11pt,epsfig]{jarticle}
+\topmargin=-1.5cm
+\textwidth=17cm
+\textheight=25cm
+\oddsidemargin=-0.5cm
+\evensidemargin=-0.5cm
+
+\begin{document}
+\begin{center}
+  \Large\bf 情報活用演習 課題10
+\end{center}
+
+\begin{flushright}
+  \begin{tabular}{ll}
+    学生番号: & B151235 \\
+    氏名:     & 山下 直哉 \\
+    提出日:   & 平成27年12月15日 \\
+    提出期限: & 平成27年12月22日 \\
+  \end{tabular}
+\end{flushright}
+
+\section {確率分布の例}
+代表的な確率分布を示す。
+\begin{itemize}
+\item 二項分布\\
+  $0,1,2,\ldots,n$のいずれかの値をとる離散型確率変数$X$について
+  \begin {eqnarray}
+    P(X=x)=_nC_xp^xq^{n-x}\ \ (x=0,1,2,\ldots,n; 0 < p <1, p+q = 1)
+  \end {eqnarray}
+  と表せる確率分布を二項分布と言い、$Bin(n,p)$と書く。
+
+\item ポアソン分布\\
+  $0,1,2,\ldots,n$のいずれかの値をとる離散型確率変数$X$について
+  \begin {eqnarray}
+    P(X=x)=e^{-\lambda}\frac{\lambda^x}{x!}\ \ (x=0,1,2,\ldots,n; \lambda>0)
+  \end {eqnarray}
+  と表せる確率分布をポアソン分布と言い、$Po(\lambda)$と書く。
+
+\item 正規分布\\
+  連続型確率変数$X$が密度関数
+  \begin {eqnarray}
+    f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{\frac{(x-\mu)^2}{2\sigma^2}}
+  \end {eqnarray}
+  にしたがう分布を正規分布と言い$N(\mu,\sigma^2)$で表す。
+
+\item 指数分布\\
+  連続型確率変数$X$の分布が密度関数
+  \begin {eqnarray}
+    f(x) = \left\{
+    \begin {array}{ll}
+      \lambda e^{-\lambda x}\ \ \ &(x\geq 0)\ (\lambda: 正定数)\\
+      0      & (x < 0)
+    \end {array}
+    \right.
+  \end {eqnarray}
+  にしたがうとき、指数分布という
+
+\item 一様分布\\
+  連続型確率変数$X$の分布が密度関数
+  \begin {eqnarray}
+    f(x) = \left\{
+    \begin {array}{ll}
+      \frac{1}{n}\ \ \ & (x=x_1,x_2,\ldots,x_n)\\
+      0      & (その他のx)
+    \end {array}
+    \right.
+  \end {eqnarray}
+  に従うとき、一様分布という。
+\end {itemize}
+
+\end{document}
+

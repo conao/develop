@@ -1,14 +1,26 @@
 n = gets.to_i
-a = Array.new(4){Array.new(3){Array.new(10,0)}}
-
+a = Array.new(4).map!{[1..13]}
+ 
 n.times do
-  b, f, r, v = gets.split(" ").map(&:to_i)
-  a[b - 1][f - 1][r - 1] += v
-end
-
-4.times do |i|
-  3.times do |j|
-    puts a[i][j].join(" ")
+  b, c = gets.split(" ")
+  case b
+  when "S"; a[0][c.to_i-1] = -1
+  when "H"; a[1][c.to_i-1] = -1
+  when "C"; a[2][c.to_i-1] = -1
+  when "D"; a[3][c.to_i-1] = -1
   end
-  puts "#" * 20
+end
+ 
+4.times do |i| 
+  13.times do |j| 
+    if a[i][j] != -1
+      print case i
+            when 0; "S "
+            when 1; "H "
+            when 2; "C "
+            when 3; "D "
+            end
+      puts j+1
+    end
+  end
 end

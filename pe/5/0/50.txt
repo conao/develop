@@ -1,0 +1,75 @@
+プログラミング演習 第5回 レポート課題
+B151235 山下直哉
+課題番号 0
+
+1. 端末での入出力
+**********
+60-202:~/Develop/5 conao$ ./50-1.o
+Input a string
+hoge
+HOGE
+
+60-202:~/Develop/5 conao$ ./50-2.o
+Input a string
+This program is free software; you can redistribute it and/or modify
+#words: 11
+
+60-202:~/Develop/5 conao$ ./50-3.o
+ABC2
+
+2. プログラムの説明
+********* 50-1.c
+#include<stdio.h>
+
+char mytoupper(char c){
+    c -= 'a' - 'A';
+    return c;
+}
+
+int main(){
+    char c;
+
+    printf("Input a string\n");
+    while((c = getchar()) != '\n')
+        printf("%c", mytoupper(c));
+    printf("\n");
+    return 0;
+}
+
+********* 50-2.c
+#include<stdio.h>
+
+int main(){
+    int wnum = 0;
+    char c;
+
+    printf("Input a string\n");
+    while((c = getchar()) != '\n'){
+        if (c == ' ') {
+            wnum++;
+        }
+    }
+    printf("#words: %d\n", ++wnum);
+    return 0;
+}
+
+********* 50-3.c
+#include<stdio.h>
+
+int main(){
+    char s1[] = "ABC2";
+    char s2[] = "ABCD";
+    int i = 0;
+    while (s1[i] == s2[i] && s1[i] != '\0')
+        i++;
+    if (s1[i] == '\0' || s1[i] < s2[i])
+        printf("%s\n", s1);
+    else if (s2[i] == '\0' || s1[i] > s2[i])
+        printf("%s\n", s2);
+    return 0;
+}
+
+3. コメント
+*********
+bb9で示されたプログラムを入力し、動作を確認した。
+

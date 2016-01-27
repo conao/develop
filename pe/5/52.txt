@@ -1,0 +1,50 @@
+プログラミング演習 第5回 レポート課題
+B151235 山下直哉
+課題番号 2
+
+1. 端末での入出力
+**********
+b151235@imc2e-085:/fs/home/b151235/develop/pe/5$ ./a.out
+Input a string
+This program is free software; you can redistribute it and/or modify
+
+#words: 11
+
+2. プログラムの説明
+*********
+#include<stdio.h>
+
+int main(){
+    int wnum = 0;
+    int frgStart = 0;
+    int frgBlank = 0;
+    char c;
+
+    printf("Input a string\n");
+    while((c = getchar()) != '\n'){
+        // 空白を検知したらルーチンに入る
+        if (c == ' ') {
+            // 文字列が始まっている時のみ単語数増加の可能性がある
+            if (frgStart) {
+                // 前の文字が空白でない時のみ、単語数を増加する
+                if (!frgBlank) {
+                    wnum++;
+                }
+            }
+            // 空白を検知したので、フラグを立てる
+            frgBlank = 1;
+        } else {
+            // 空白意外なので、文字列が開始したと判断する
+            frgStart = 1;
+            frgBlank = 0;
+        }
+    }
+    printf("#words: %d\n", ++wnum);
+    return 0;
+}
+
+3. コメント
+*********
+問題の指定の通り、文字列が空白で始まっていたり、2つ以上の空白に対応した。
+
+

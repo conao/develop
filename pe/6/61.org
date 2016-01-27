@@ -1,0 +1,15 @@
+#+TITLE: プログラミング演習 第6回 問題1 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+245-048:~/Develop/6 conao$ ./61.o
+4, 3
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./61.c" src plain-c
+* コメント
+  元々のプログラムでは、値渡しになっていたので、main関数の変数が変化しなかった。そのためポインタで渡し、参照渡しにするようプログラムを修正した。
+

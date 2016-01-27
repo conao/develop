@@ -1,0 +1,48 @@
+#+TITLE: プログラミング演習 第6回 問題0 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+245-048:~/Develop/6 conao$ ./60-int.o
+40 4 4
+8 4
+
+245-048:~/Develop/6 conao$ ./60-char.o
+10 1 1
+8 1
+
+245-048:~/Develop/6 conao$ ./60-short.c
+20 2 2
+8 2
+
+245-048:~/Develop/6 conao$ ./60-short.o
+20 2 2
+8 2
+
+245-048:~/Develop/6 conao$ ./60-float.o
+40 4 4
+8 4
+
+245-048:~/Develop/6 conao$ ./60-double.o
+80 8 8
+8 8
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./60.c" src plain-c
+* コメント
+  |   | A         | B          | C              |
+  |---+-----------+------------+----------------|
+  | 1 | sizeof(a) | sizeof(*a) | sizeof(a[ 0 ]) |
+  | 2 | sizeof(b) | sizeof(*b) |                | 
+  
+  この表において
+  - 1A のsizeofは配列a全体のメモリ上のサイズを求めている。
+  - 1B のsizeofは配列aの一番最初の変数のメモリ上のサイズを求めている。
+  - 1C のsizeofは配列aの一番最初の変数のメモリ上のサイズを求めている。
+  - 2A のsizeofはポインタbのポインタのメモリ上のサイズを求めている。
+  - 2B のsizeofはポインタの示す（はずの）メモリ上のサイズを求めている。
+    
+  よってポインタ自体のメモリ上のサイズは必ず8Biteで、 *この例においては* 配列も配列の名前をsizeofに渡すことで意図通りの答えが返ることがわかる。
+

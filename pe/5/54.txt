@@ -1,0 +1,53 @@
+プログラミング演習 第5回 レポート課題
+B151235 山下直哉
+課題番号 4
+
+1. 端末での入出力
+**********
+b151235@imc2e-085:/fs/home/b151235/develop/pe/5$ ./a.out
+a[]=12345, a=12345
+
+2. プログラムの説明
+*********
+#include <stdio.h>
+// pow関数を使用するために必要
+#include <math.h>
+
+int myatoi(char target[]) {
+    // 変数の宣言
+    // 答えを代入する
+    int result;
+    // 各桁の重みを管理する
+    int weight;
+    // 現在参照中の桁
+    int digit;
+
+    weight = 0;
+    while (target[weight] != '\0') {
+        weight++;
+    }
+    
+    // 桁数と重みのズレを修正する。例えば3桁目は10*2の重み。
+    weight--;
+    // resultの初期化
+    result = 0;
+    // 終端文字まで処理を継続する
+    for (digit = 0; target[digit] != '\0'; digit++) {
+        // 各桁の重みをかけて、resultに加算する
+        result += pow(10, weight) * (target[digit]-'1'+1);
+        weight--;
+    }
+    return result;
+}
+
+int main(){
+    char a[]="12345";
+    printf("a[]=%s, a=%d\n",a,myatoi(a));
+    return(0);
+}
+
+3. コメント
+*********
+問題の指定の通り、myatoiを定義しその結果を利用して出力を得た
+
+

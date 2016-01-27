@@ -1,0 +1,55 @@
+プログラミング演習 第3回 レポート課題
+B151235 山下直哉
+課題番号 0-2
+
+1. 端末での入出力
+**********
+bash-3.2$ ./30-2a
+False
+b = 0
+
+bash-3.2$ ./30-2b
+True
+b = 0
+
+2. プログラムの説明
+*********
+*** 30-2a.c
+#include <stdio.h>
+
+int main() {
+    int a = 1;
+    int b = 0;
+
+    if (a == 0 && b++) {
+        printf("True\n");
+    } else {
+        printf("False\n");
+    }
+    printf("b = %d\n", b);
+    
+    return 0;
+}
+
+*** 30-2b.c
+#include <stdio.h>
+
+int main() {
+    int a = 0;
+    int b = 0;
+
+    if (a == 0 || b++) {
+        printf("True\n");
+    } else {
+        printf("False\n");
+    }
+    printf("b = %d\n", b);
+    
+    return 0;
+}
+
+3. コメント
+*********
+講義で示されたプログラムを入力し、動作を確認した。
+この知識は大切だが、まずこのようなプログラムを書かないようにしたい。
+gcc(ver:4.9.2)のWallオプションでは何の警告も表示されなかった。

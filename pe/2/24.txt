@@ -1,0 +1,60 @@
+プログラミング演習 第2回 レポート課題
+B151235 山下直哉
+課題番号 4
+
+1. 端末での入出力
+*********
+b151235@imc2e-085:/fs/home/b151235/develop/pe/2$ gcc 23.c -g -lm
+b151235@imc2e-085:/fs/home/b151235/develop/pe/2$ ./23
+5
+2^5 = 32
+
+b151235@imc2e-085:/fs/home/b151235/develop/pe/2$ ./23
+30
+2^30 = 1073741824
+
+b151235@imc2e-085:/fs/home/b151235/develop/pe/2$ ./23
+32
+Input data must be in the range from 1 to 30.
+
+2. プログラムの説明
+*********
+// printf関数、scanf関数を使うために必要
+#include <stdio.h>
+
+int main() {
+    int target;
+    int i;
+    float tmp;
+    float result;
+    int count;
+
+    // 初期化
+    tmp = 1;
+    result = 0.0;
+
+    // 標準入力からxを受け取る
+    scanf("%d", &target);
+    
+    // count回繰り返す
+    count = 10;
+    for (i=0; i<10; i++) {
+	    // tmpをどんどんtargetで割っていく。
+	    // 初期値1のため、1/target,1/(target)^2,,,と変化していく
+	    tmp /= target;
+
+	    // それぞれのtmpの和を求める。
+	    result += tmp;
+    }
+    
+    printf("%f\n", result);
+
+    // main関数の正常終了
+    return 0;
+}
+
+3. コメント
+*********
+tmpの初期値が1のため、targetで割られるごとに1/x,1/(x^2),1/(x^3),,,と変化していく。
+初期状態では10回繰り返すため、1/(x^10)まで計算するが、
+繰り返しの回数を変更する場合は、変数countを操作することによって実現できる。

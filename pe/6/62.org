@@ -1,0 +1,16 @@
+#+TITLE: プログラミング演習 第6回 問題2 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+245-048:~/Develop/6 conao$ ./62.o
+sum=45
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./62.c" src plain-c
+* コメント
+  問題の指定の通り、ポインタでアクセスするようにプログラムを変更した。
+
+

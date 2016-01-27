@@ -1,0 +1,5 @@
+printfによってHiroshima Universityという文字列を出力している。
+
+[実行結果]
+b151235@imc2e-042:~/Develop$ ./a.out
+Hiroshima University

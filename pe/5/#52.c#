@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main(){
+    int wnum = 0;
+    int frgChar;
+    char c;
+
+    printf("Input a string\n");
+
+    // すべての文字列は空白で始まっていると考える
+    frgChar = 0;
+    
+    printf("#words: %d\n", ++wnum);
+    return 0;
+}
