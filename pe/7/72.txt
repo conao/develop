@@ -1,0 +1,67 @@
+                      ___________________________
+
+                        プログラミング演習 第7回
+                           問題2 レポート課題
+
+                               山下 直哉
+                       b151235@hiroshima-u.ac.jp
+                      ___________________________
+
+
+
+
+
+1 端末での入出力
+================
+
+  ,----
+  | 65-094:~/develop/7 conao$ ./72.o
+  | 3
+  | 3 is two plus one.
+  | 
+  | 65-094:~/develop/7 conao$ ./72.o
+  | 2
+  | 2 is two.
+  | 
+  | 65-094:~/develop/7 conao$ ./72.o
+  | 1
+  | 1 is one.
+  `----
+
+
+2 プログラムの説明
+==================
+
+  ,----
+  | #include <stdio.h>
+  | 
+  | int main() {
+  |     int n;
+  |     scanf("%d",&n);
+  |     printf("%d is ",n);
+  |     switch (n) {
+  |     case 2:
+  |         printf("two.\n");
+  |         break;
+  |     case 3:
+  |         printf("two plus ");
+  |     case 1:
+  |         printf("one.\n");
+  |         break;
+  |     default:
+  |         printf("otherwise.\n");
+  |     }
+  |     return 0;
+  | }
+  `----
+
+
+3 コメント
+==========
+
+  プログラム中に適宜Break文を挿入し、要求された動作を実現した。
+  Break文とともに改行コードも出力するように改良した。
+
+
+
+                                          Emacs 24.4.1 (Org mode 8.2.10)

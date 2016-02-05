@@ -1,0 +1,31 @@
+#+TITLE: プログラミング演習 第7回 問題0 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+65-094:~/develop/7 conao$ ./70-1.o
+a
+n
+o
+
+65-094:~/develop/7 conao$ ./70-2.o
+a
+n
+o
+
+65-094:~/develop/7 conao$ ./70-3.o
+a
+n
+O
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./70-1.c" src plain-c
+* コメント
+  | 70-1.c      | 70-2.c    | 70-3.c    |
+  | *(*(p+i)+1) | p[i][ 1 ] | *(p[i]+1) |
+
+  問題文の指定の場所を適宜変更して、プログラムの動作を確認した。\\
+これら３つの書き方に動作上の差異はないことが確認できた。
+

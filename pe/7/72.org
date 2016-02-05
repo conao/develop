@@ -1,0 +1,26 @@
+#+TITLE: プログラミング演習 第7回 問題2 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+65-094:~/develop/7 conao$ ./72.o
+3
+3 is two plus one.
+
+65-094:~/develop/7 conao$ ./72.o
+2
+2 is two.
+
+65-094:~/develop/7 conao$ ./72.o
+1
+1 is one.
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./72.c" src plain-c
+* コメント
+  プログラム中に適宜Break文を挿入し、要求された動作を実現した。\\
+Break文とともに改行コードも出力するように改良した。
+
+

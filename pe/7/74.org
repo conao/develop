@@ -1,0 +1,16 @@
+#+TITLE: プログラミング演習 第7回 問題4 レポート課題
+#+AUTHOR: 山下 直哉
+#+EMAIL: b151235@hiroshima-u.ac.jp
+#+OPTIONS: toc:nil \n:t ^:nil creator:t author:t email:t timestamp:t
+
+* 端末での入出力
+#+begin_example src shell
+b151235@imc2e-085:~/develop/pe/7$ ./a.out this is a pen
+i
+The number of i is 2.
+#+end_example
+* プログラムの説明
+#+INCLUDE: "./74.c" src plain-c
+* コメント
+  argvの全要素をfor文を使って走査した。
+  
