@@ -1,6 +1,9 @@
-*.out
-*.o
-*~
-*.aux
-*.dvi
-*.log
+# conao3's global .gitignore at
+# http://dotfiles.conao3.com/gitignore
+
+# tmp folder
+/tmp
+
+# git clone folder
+/git
+/conao3
