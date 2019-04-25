@@ -20,9 +20,12 @@ $(DIRS):
 
 ##############################
 
-clone: $(ALLREPO:%=conao3-all/%)
+clone: $(SOURCEREPO:%=conao3/%) $(ALLREPO:%=conao3-all/%)
+conao3/%: conao3-all/%
+	ln -sf ../$< $@
+
 conao3-all/%:
-	git clone --depth 1 git@github.com:$@.git $@
+	git clone --depth 1 git@github.com:conao3/$*.git $@
 
 ##############################
 
