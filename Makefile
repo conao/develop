@@ -5,8 +5,9 @@ include Makefunc.mk
 TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 GITHUB_URL := https://api.github.com/users/conao3/repos\?per_page=1000
-ALLREPO    := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
-SOURCEREPO := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
+ALLREPOS    := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
+SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
+
 
 DIRS := .make conao3 conao3-all git
 
@@ -20,7 +21,7 @@ $(DIRS):
 
 ##############################
 
-clone: $(SOURCEREPO:%=conao3/%) $(ALLREPO:%=conao3-all/%)
+clone: $(SOURCEREPOS:%=conao3/%) $(ALLREPOS:%=conao3-all/%)
 conao3/%: conao3-all/%
 	ln -sf ../$< $@
 
@@ -29,7 +30,7 @@ conao3-all/%:
 
 ##############################
 
-unshallow: $(ALLREPO:%=.make/unshallow-%)
+unshallow: $(ALLREPOS:%=.make/unshallow-%)
 .make/unshallow-%:
 	-cd conao3-all/$* && git fetch --unshallow
 	touch $@
