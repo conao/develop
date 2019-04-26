@@ -45,6 +45,11 @@ pull:
 	  xargs -n1 -P$(P) -I%% bash -c \
 	  "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
 
+push:
+	-find conao3-all -depth 1 -type d | \
+	  xargs -n1 -P$(P) -I%% bash -c \
+	  "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
+
 ##############################
 
 clean:
