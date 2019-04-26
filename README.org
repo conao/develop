@@ -1,7 +1,7 @@
 #+author: conao3
 #+date: <2018-10-25 Thu>
 
-[[https://github.com/conao3/develop][https://raw.githubusercontent.com/conao3/files/master/header/png/develop.png]]
+[[https://github.com/conao3/develop][https://raw.githubusercontent.com/conao3/files/master/blob/headers/png/develop.png]]
 [[https://github.com/conao3/develop/blob/master/LICENSE][https://img.shields.io/github/license/conao3/develop.svg?style=flat-square]]
 [[https://github.com/conao3/develop/releases][https://img.shields.io/github/tag/conao3/develop.svg?style=flat-square]]
 [[https://travis-ci.org/conao3/develop][https://img.shields.io/travis/conao3/develop/master.svg?style=flat-square]]
@@ -20,7 +20,7 @@
   - [[#contribute][Contribute]]
   - [[#license][License]]
   - [[#author][Author]]
-  - [[#contributor][Contributor]]
+  - [[#contributors][Contributors]]
 
 * Description
 This is the ~dev~ folder located in conao3's ~$HOME~.
@@ -106,5 +106,5 @@ Feel free to send PR!
 ** Author
 - Naoya Yamashita ([[https://github.com/conao3][conao3]])
 
-** Contributor
+** Contributors
 - Not yet... Now send PR and add your name!!
