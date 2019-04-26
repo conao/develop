@@ -31,14 +31,10 @@ clone:
 	  xargs -n1 -P$(P) -t -I %% bash -c \
 	  "cd repos && git clone --depth 1 git@github.com:conao3/$*.git"
 
-##############################
-
 unshallow:
 	-find repos -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I%% bash -c \
 	  "cd %% && git fetch --unshallow"
-
-##############################
 
 pull:
 	-find repos git -depth 1 -type d | \
