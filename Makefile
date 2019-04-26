@@ -35,20 +35,25 @@ conao3-all/%:
 
 ####################
 
-clone_dir  = $(shell echo $@ | cut -d/ -f1,2)
-clone_repo = $(shell echo $@ | cut -d/ -f3-)
-clone_name = $(shell echo $@ | rev | cut -d/ -f1 | rev)
+clone_dir  = git/$(shell echo $* | cut -d/ -f1)
+clone_repo = $(shell echo $* | cut -d/ -f2-)
+clone_name = $(shell echo $* | rev | cut -d/ -f1 | rev)
 
 git/%:
 	mkdir -p $(clone_dir)
+	$(info $*)
 	git clone --depth 1 https://github.com/$(clone_repo).git $(clone_dir)/$(clone_name)
 
 ##############################
 
-unshallow: $(ALLREPOS:%=.make/unshallow-%)
-.make/unshallow-%:
+unshallow: $(ALLREPOS:%=.make/unshallow-conao3-%) $(OTHERREPOS:%=.make/unshallow-other-%)
+.make/unshallow-conao3-%:
 	-cd conao3-all/$* && git fetch --unshallow
 	touch $@
+
+.make/unshallow-other-%:
+	-cd git/$(clone_dir) && git fetch --unshallow
+#	touch .make/unshallow-other-$(subst $*,/,-)
 
 ##############################
 
