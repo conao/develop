@@ -8,8 +8,8 @@ GITHUB_URL := https://api.github.com/users/conao3/repos\?per_page=1000
 ALLREPOS    := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
 SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
 
-# xargs parrallel option in `pull` job
-P ?= 1
+# xargs parallel option in `pull` job
+P ?= 12
 
 DIRS := .make conao3 conao3-all
 
