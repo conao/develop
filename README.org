@@ -11,7 +11,7 @@
 [[https://join.slack.com/t/conao3-support/shared_invite/enQtNTg2MTY0MjkzOTU0LTFjOTdhOTFiNTM2NmY5YTE5MTNlYzNiOTE2MTZlZWZkNDEzZmRhN2E0NjkwMWViZTZiYjA4MDUxYTUzNDZiNjY][https://img.shields.io/badge/chat-on_slack-blue.svg?logo=slack&style=flat-square]]
 
 * Table of Contents
-- [[#background][Background]]
+- [[#description][Description]]
 - [[#install][Install]]
 - [[#usage][Usage]]
 - [[#information][Information]]
@@ -22,15 +22,68 @@
   - [[#author][Author]]
   - [[#contributor][Contributor]]
 
-* Background
-This repository hosting coding contest source files.
+* Description
+This is the ~dev~ folder located in conao3's ~$HOME~.
+This folder contains the programming contest code and a small ~Makefile~
+to manage the GitHub repository.
+
+I created this repository mainly to manage that Makefile.
+
+It could be help to manage your GitHub repository with some modifications.
 
 * Install
+Only clone it and ~make~ someting showed below.
 #+begin_src sh
-  git clone https://github.com/conao3/develop.git
+  cd
+  git clone https://github.com/conao3/develop.git dev
 #+end_src
 
+~.make~, ~conao3~ and ~conao3-all~ is managed Makefile
+so should not add and remove folders.
+~git~ is yours to manage other (someone or other hosted service) repositories.
+
+Repositories placed under ~git~ will not be pushed by ~make push~,
+but only fetch and merge updates of upstream with ~make pull~.
+
 * Usage
+** make
+~make~ runs ~make $(DIRS)~ and ~make clone~ that prepare dirs and 
+shallow clone all repositories hosted on GitHab.
+
+** make clone 
+~make clone~ shallow clone (fetch head tree only) all repositories
+hosted on GitHub as conao3 to ~conao3-all~
+and create symlink to conao3 created repositories in ~conao3~ (not fork).
+#+begin_src bash
+  $ make
+    > mkdir -p .make
+    > mkdir -p conao3
+    > mkdir -p conao3-all
+    > git clone --depth 1 git@github.com:conao3/adder.y.git conao3-all/adder.y
+    > git clone --depth 1 git@github.com:conao3/apel.el.git conao3-all/apel.el
+    > git clone --depth 1 git@github.com:conao3/auto-save-buffers.el.git conao3-all/auto-save-buffers.el
+    > ...
+    > 
+    > ln -sf ../conao3-all/adder.y conao3/adder.y
+    > ln -sf ../conao3-all/apel.el conao3/apel.el
+    > ln -sf ../conao3-all/auto-save-buffers.el conao3/auto-save-buffers.el
+#+end_src
+
+** make unshallow
+~make unshallow~ unshallow repositories (fetch whole repository)
+for fetched by ~make clone~ for repositories in ~conao3-all~.
+
+** make pull
+~make pull~ pull repositories from origin and from its current branch
+for repositories in ~conao3-all~ and ~git~.
+ 
+** make push
+~make push~ push repositories to origin and to current branch
+for repositories in ~conao3-all~.
+
+** make clean
+~make clean~ move ~$(DIRS)~; ~.make~, ~conao3~ and ~conao3-all~ to ~trash~ folder
+(not remove them. just move).
 
 * Information
 ** Donation
