@@ -5,8 +5,8 @@ include Makefunc.mk
 TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 GITHUB_URL := https://api.github.com/users/conao3/repos\?per_page=1000
-ALLREPOS    := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
-SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
+REPOS      := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
+# SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
 
 # xargs parallel option in `pull` job
 P ?= 12
@@ -23,14 +23,14 @@ $(DIRS):
 
 ##############################
 
-clone: $(ALLREPOS:%=repos/%)
+clone: $(REPOS:%=repos/%)
 
 repos/%:
 	git clone --depth 1 git@github.com:conao3/$*.git $@
 
 ##############################
 
-unshallow: $(ALLREPOS:%=.make/unshallow-%)
+unshallow: $(REPOS:%=.make/unshallow-%)
 .make/unshallow-%:
 	-cd repos/$* && git fetch --unshallow
 	touch $@
