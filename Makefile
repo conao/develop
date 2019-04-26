@@ -8,7 +8,7 @@ TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # REPOS       := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
 # SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
 
-# xargs parallel option in `pull` job
+# xargs parallel option
 P ?= 12
 
 DIRS := .make repos git
