@@ -8,6 +8,9 @@ GITHUB_URL := https://api.github.com/users/conao3/repos\?per_page=1000
 ALLREPOS    := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
 SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
 
+# xargs parrallel option in `pull` job
+P ?= 1
+
 DIRS := .make conao3 conao3-all
 
 .PHONY: all clean
@@ -39,7 +42,7 @@ unshallow: $(ALLREPOS:%=.make/unshallow-conao3-%)
 
 pull:
 	-find conao3-all git -depth 1 -type d | \
-	  xargs -n1 -I%% bash -c \
+	  xargs -n1 -P$(P) -I%% bash -c \
 	  "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
 
 ##############################
