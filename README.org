@@ -38,7 +38,7 @@ Only clone it and ~make~ someting showed below.
   git clone https://github.com/conao3/develop.git dev
 #+end_src
 
-~.make~, ~conao3~ and ~conao3-all~ is managed Makefile
+~.make~, ~repos~ is managed Makefile
 so should not add and remove folders.
 ~git~ is yours to manage other (someone or other hosted service) repositories.
 
@@ -52,37 +52,31 @@ shallow clone all repositories hosted on GitHab.
 
 ** make clone 
 ~make clone~ shallow clone (fetch head tree only) all repositories
-hosted on GitHub as conao3 to ~conao3-all~
-and create symlink to conao3 created repositories in ~conao3~ (not fork).
+hosted on GitHub as conao3 to ~repos~.
 #+begin_src bash
   $ make
     > mkdir -p .make
-    > mkdir -p conao3
-    > mkdir -p conao3-all
-    > git clone --depth 1 git@github.com:conao3/adder.y.git conao3-all/adder.y
-    > git clone --depth 1 git@github.com:conao3/apel.el.git conao3-all/apel.el
-    > git clone --depth 1 git@github.com:conao3/auto-save-buffers.el.git conao3-all/auto-save-buffers.el
+    > mkdir -p repos
+    > git clone --depth 1 git@github.com:conao3/adder.y.git repos/adder.y
+    > git clone --depth 1 git@github.com:conao3/apel.el.git repos/apel.el
+    > git clone --depth 1 git@github.com:conao3/auto-save-buffers.el.git repos/auto-save-buffers.el
     > ...
-    > 
-    > ln -sf ../conao3-all/adder.y conao3/adder.y
-    > ln -sf ../conao3-all/apel.el conao3/apel.el
-    > ln -sf ../conao3-all/auto-save-buffers.el conao3/auto-save-buffers.el
 #+end_src
 
 ** make unshallow
 ~make unshallow~ unshallow repositories (fetch whole repository)
-for fetched by ~make clone~ for repositories in ~conao3-all~.
+for fetched by ~make clone~ for repositories in ~repos~.
 
 ** make pull
 ~make pull~ pull repositories from origin and from its current branch
-for repositories in ~conao3-all~ and ~git~.
+for repositories in ~repos~ and ~git~.
  
 ** make push
 ~make push~ push repositories to origin and to current branch
-for repositories in ~conao3-all~.
+for repositories in ~repos~.
 
 ** make clean
-~make clean~ move ~$(DIRS)~; ~.make~, ~conao3~ and ~conao3-all~ to ~trash~ folder
+~make clean~ move ~$(DIRS)~; ~.make~, ~repos~ and ~git~ to ~trash-$(UUID)~ folder
 (not remove them. just move).
 
 * Information
