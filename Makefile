@@ -13,7 +13,7 @@ P ?= 12
 
 DIRS := .make repos git
 
-.PHONY: all clean
+.PHONY: all unshallow pull push clean 
 all: $(DIRS) clone
 
 ##############################
