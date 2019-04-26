@@ -53,4 +53,5 @@ push:
 ##############################
 
 clean:
-	rm -rf $(DIRS)
+	date +%Y-%m-%d:%H-%M-%S | \
+	  xargs -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
