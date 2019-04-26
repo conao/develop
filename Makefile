@@ -37,5 +37,12 @@ unshallow: $(ALLREPOS:%=.make/unshallow-conao3-%)
 
 ##############################
 
+pull:
+	-find conao3-all git -depth 1 -type d | \
+	  xargs -n1 -I%% bash -c \
+	  "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
+
+##############################
+
 clean:
 	rm -rf $(DIRS)
