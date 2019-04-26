@@ -11,7 +11,7 @@ SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | 
 # xargs parallel option in `pull` job
 P ?= 12
 
-DIRS := .make conao3 conao3-all
+DIRS := .make repos git
 
 .PHONY: all clean
 all: $(DIRS) clone
@@ -23,30 +23,27 @@ $(DIRS):
 
 ##############################
 
-clone: $(SOURCEREPOS:%=conao3/%) $(ALLREPOS:%=conao3-all/%)
+clone: $(ALLREPOS:%=repos/%)
 
-conao3/%: conao3-all/%
-	ln -sf ../$< $@
-
-conao3-all/%:
+repos/%:
 	git clone --depth 1 git@github.com:conao3/$*.git $@
 
 ##############################
 
-unshallow: $(ALLREPOS:%=.make/unshallow-conao3-%)
-.make/unshallow-conao3-%:
-	-cd conao3-all/$* && git fetch --unshallow
+unshallow: $(ALLREPOS:%=.make/unshallow-%)
+.make/unshallow-%:
+	-cd repos/$* && git fetch --unshallow
 	touch $@
 
 ##############################
 
 pull:
-	-find conao3-all git -depth 1 -type d | \
+	-find repos git -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I%% bash -c \
 	  "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
 
 push:
-	-find conao3-all -depth 1 -type d | \
+	-find repos -depth 1 -type d | \
 	  xargs -n1 -P$(P) -t -I%% bash -c \
 	  "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
 
