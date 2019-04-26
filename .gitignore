@@ -4,13 +4,9 @@
 # make working foldor
 /.make
 
-# tmp folder
-/tmp
-
 # git clone folder
 /git
-/conao3
-/conao3-all
+/repo
 
 # trash folder
 /trash-*
