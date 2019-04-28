@@ -10,3 +10,6 @@
 
 # trash folder
 /trash-*
+
+# tmp folder
+/tmp
