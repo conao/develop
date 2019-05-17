@@ -29,13 +29,13 @@ clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
 	  jq -r '.[] | .name' | \
 	  xargs -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && git clone git@github.com:conao3/%%.git"
+	    "cd repos && [ ! -d %% ] && git clone git@github.com:conao3/%%.git"
 
 shallow-clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
 	  jq -r '.[] | .name' | \
 	  xargs -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && git clone --depth 1 git@github.com:conao3/%%.git"
+	    "cd repos && [ ! -d %% ] && git clone --depth 1 git@github.com:conao3/%%.git"
 
 unshallow:
 	-find repos -depth 1 -type d | \
