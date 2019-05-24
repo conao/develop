@@ -1,0 +1,15 @@
+#+title: math.org
+#+author: Naoya Yamashita
+
+\begin{align}
+a+b\sqrt{5}
+\end{align}
+
+\begin{align}
+a+b\sqrt{5a}
+\end{align}
+s
+* s 
+** sadgfadfgss
+ss
+s
