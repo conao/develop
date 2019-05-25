@@ -12,7 +12,6 @@ TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 P ?= 12
 
-DEPTH := $(shell if -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 DIRS := .make repos git
 
 ##################################################
@@ -40,17 +39,17 @@ shallow-clone:
 	    "cd repos && [ ! -d %% ] && git clone --max-depth 1 git@github.com:conao3/%%.git"
 
 unshallow:
-	-find repos -max-depth 1 -type d | \
+	-find repos -maxdepth 1 -type d | \
 	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git fetch --unshallow"
 
 pull:
-	-find repos git -max-depth 1 -type d | \
+	-find repos git -maxdepth 1 -type d | \
 	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
 
 push:
-	-find repos -max-depth 1 -type d | \
+	-find repos -maxdepth 1 -type d | \
 	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
 
