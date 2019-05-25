@@ -8,9 +8,11 @@ TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # REPOS       := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
 # SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
 
-# xargs parallel option
+# xargs option
+XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 P ?= 12
 
+DEPTH := $(shell if -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 DIRS := .make repos git
 
 ##################################################
@@ -28,32 +30,32 @@ $(DIRS):
 clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
 	  jq -r '.[] | .name' | \
-	  xargs -n1 -P$(P) -t -I %% bash -c \
+	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
 	    "cd repos && [ ! -d %% ] && git clone git@github.com:conao3/%%.git"
 
 shallow-clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
 	  jq -r '.[] | .name' | \
-	  xargs -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && [ ! -d %% ] && git clone --depth 1 git@github.com:conao3/%%.git"
+	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
+	    "cd repos && [ ! -d %% ] && git clone --max-depth 1 git@github.com:conao3/%%.git"
 
 unshallow:
-	-find repos -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I%% bash -c \
+	-find repos -max-depth 1 -type d | \
+	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git fetch --unshallow"
 
 pull:
-	-find repos git -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I%% bash -c \
+	-find repos git -max-depth 1 -type d | \
+	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
 
 push:
-	-find repos -depth 1 -type d | \
-	  xargs -n1 -P$(P) -t -I%% bash -c \
+	-find repos -max-depth 1 -type d | \
+	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
 
 ##############################
 
 clean:
 	date +%Y-%m-%d:%H-%M-%S | \
-	  xargs -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
+	  $(XARGS) -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
