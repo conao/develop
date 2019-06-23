@@ -30,7 +30,7 @@ clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
 	  jq -r '.[] | .name' | \
 	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && [ ! -d %% ] && git clone git@github.com:conao3/%%.git"
+	    "cd repos && if [ ! -d %% ]; then git clone git@github.com:conao3/%%.git; fi"
 
 shallow-clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
