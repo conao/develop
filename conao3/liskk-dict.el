@@ -1,0 +1,1 @@
+../repos/liskk-dict.el
