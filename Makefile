@@ -12,12 +12,12 @@ TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 P ?= 12
 
-DIRS := .make repos git
+DIRS := .make repos git conao3
 
 ##################################################
 
 .PHONY: all unshallow pull push clean 
-all: $(DIRS) clone
+all: $(DIRS) clone link
 
 ##############################
 
@@ -52,6 +52,12 @@ push:
 	-find repos -maxdepth 1 -type d | \
 	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
 	    "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
+
+link: conao3 clone
+	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
+	  jq -r '.[] | select(.fork==false) | .name' | \
+	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
+	    "cd $< && ln -s ../repos/%%"
 
 ##############################
 
