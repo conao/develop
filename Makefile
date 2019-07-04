@@ -4,8 +4,9 @@ include Makefunc.mk
 
 TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
-TARGET =
 DIRS := .make repos forks git conao3
+
+TARGET =
 
 ##################################################
 
