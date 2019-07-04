@@ -42,6 +42,9 @@ repos/%:; git clone git@github.com:conao3/$*.git $@
 forks/%:
 	git clone https://github.com/`curl https://api.github.com/repos/conao3/$* | jq -r '.parent.full_name'`.git $@
 	cd $@; git remote add conao3 git@github.com:conao3/$*.git
+	cd $@; git fetch --all
+	cd $@; git checkout -b conao3 conao3/master
+	cd $@; git checkout master
 
 ##############################
 
@@ -69,6 +72,17 @@ status:
 .make-status: repos forks $(TARGET:%=.make-status-worker-%)
 .make-status-worker-repos/%:; cd repos/$* && git status
 .make-status-worker-forks/%:; cd forks/$* && git status
+
+##############################
+
+upstream:
+	$(MAKE) .make-status TARGET="$(shell find forks -depth 1)"
+
+.make-upstream: forks $(TARGET:%=.make-upstream-worker-%)
+.make-upstream-worker-forks/%:
+	cd forks/$*; git checkout conao3
+	cd forks/$*; git merge master
+	cd git checkout master
 
 ##############################
 
