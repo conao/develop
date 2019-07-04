@@ -9,8 +9,9 @@ DIRS := .make repos forks git conao3
 
 ##################################################
 
-.PHONY: all unshallow pull push clean 
-all: $(DIRS) clone link
+.PHONY: all unshallow pull push clean
+
+all: clone
 
 ##############################
 
@@ -23,8 +24,8 @@ clone: .make/github-cache
 	$(MAKE) .make-clone-repos TARGET="$(shell cat $< | jq -r '.[] | select(.fork==false).name')"
 	$(MAKE) .make-clone-forks TARGET="$(shell cat $< | jq -r '.[] | select(.fork==true).name')"
 
-.make-clone-repos: $(TARGET:%=repos/%)
-.make-clone-forks: $(TARGET:%=forks/%)
+.make-clone-repos: repos $(TARGET:%=repos/%)
+.make-clone-forks: forks $(TARGET:%=forks/%)
 
 repos/%:; git clone git@github.com:conao3/$*.git repos/$*
 forks/%:; git clone git@github.com:conao3/$*.git forks/$*
