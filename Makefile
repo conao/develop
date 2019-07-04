@@ -42,10 +42,14 @@ repos/%: repos
 forks/%: forks
 	git clone git@github.com:conao3/$*.git forks/$*
 
-pull:
-	-find repos git -maxdepth 1 -type d | \
-	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
-	    "cd %% && git pull origin \$$(git symbolic-ref --short HEAD)"
+pull: repos forks
+	$(MAKE) .make-pull TARGET="$(shell find repos forks -depth 1)"
+
+.make-pull: $(TARGET:%=.make-pull-worker-%)
+.make-pull-worker-repos/%:
+	cd repos/$* && git pull origin `git symbolic-ref --short HEAD`
+.make-pull-worker-forks/%:
+	cd forks/$* && git pull origin `git symbolic-ref --short HEAD`
 
 push:
 	-find repos -maxdepth 1 -type d | \
