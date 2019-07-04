@@ -43,8 +43,6 @@ forks/%:
 	git clone https://github.com/`curl https://api.github.com/repos/conao3/$* | jq -r '.parent.full_name'`.git $@
 	cd $@; git remote add conao3 git@github.com:conao3/$*.git
 	cd $@; git fetch --all
-	cd $@; git checkout -b conao3 conao3/master
-	cd $@; git checkout master
 
 ##############################
 
@@ -62,7 +60,7 @@ push:
 
 .make-push: repos forks $(TARGET:%=.make-push-worker-%)
 .make-push-worker-repos/%:; cd repos/$* && git push origin `git symbolic-ref --short HEAD`
-.make-push-worker-forks/%:; cd forks/$* && git push origin `git symbolic-ref --short HEAD`
+.make-push-worker-forks/%:; cd forks/$* && git push conao3 `git symbolic-ref --short HEAD`
 
 ##############################
 
@@ -72,17 +70,6 @@ status:
 .make-status: repos forks $(TARGET:%=.make-status-worker-%)
 .make-status-worker-repos/%:; cd repos/$* && git status
 .make-status-worker-forks/%:; cd forks/$* && git status
-
-##############################
-
-upstream:
-	$(MAKE) .make-status TARGET="$(shell find forks -depth 1)"
-
-.make-upstream: forks $(TARGET:%=.make-upstream-worker-%)
-.make-upstream-worker-forks/%:
-	cd forks/$*; git checkout conao3
-	cd forks/$*; git merge master
-	cd git checkout master
 
 ##############################
 
