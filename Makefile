@@ -80,9 +80,11 @@ $(DIRS):
 
 ##############################
 
-clean-all: clean
-	date +%Y-%m-%d:%H-%M-%S | \
-	  $(XARGS) -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
-
 clean:
 	rm -rf .make
+
+clean-all: clean $(shell date +"trash/%Y-%m-%d_%H-%M-%S")
+
+trash/%:
+	mkdir $@
+	mv repos forks git $@
