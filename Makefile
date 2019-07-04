@@ -47,10 +47,12 @@ pull: repos forks
 .make-pull-worker-repos/%:; cd repos/$* && git pull origin `git symbolic-ref --short HEAD`
 .make-pull-worker-forks/%:; cd forks/$* && git pull origin `git symbolic-ref --short HEAD`
 
-push:
-	-find repos -maxdepth 1 -type d | \
-	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
-	    "cd %% && git push origin \$$(git symbolic-ref --short HEAD)"
+push: repos forks
+	$(MAKE) .make-push TARGET="$(shell find repos forks -depth 1)"
+
+.make-push: $(TARGET:%=.make-push-worker-%)
+.make-push-worker-repos/%:; cd repos/$* && git push origin `git symbolic-ref --short HEAD`
+.make-push-worker-forks/%:; cd forks/$* && git push origin `git symbolic-ref --short HEAD`
 
 link: conao3 clone
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
