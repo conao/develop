@@ -56,9 +56,12 @@ push: repos forks
 
 ##############################
 
-clean:
+clean-all: clean
 	date +%Y-%m-%d:%H-%M-%S | \
 	  $(XARGS) -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
+
+clean:
+	rm -rf .make
 
 .make/github-cache: .make
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 > $@
