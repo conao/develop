@@ -4,14 +4,6 @@ include Makefunc.mk
 
 TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
-# GITHUB_URL := https://api.github.com/users/conao3/repos\?per_page=1000
-# REPOS       := $(shell curl $(GITHUB_URL) | jq -r '.[] | .name')
-# SOURCEREPOS := $(shell curl $(GITHUB_URL) | jq -r '.[] | select(.fork==false) | .name')
-
-# xargs option
-XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
-P ?= 12
-
 TARGET =
 DIRS := .make repos forks git conao3
 
