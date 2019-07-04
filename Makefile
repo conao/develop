@@ -39,7 +39,6 @@ clone: .make/github-cache
 
 repos/%: repos
 	git clone git@github.com:conao3/$*.git repos/$*
-
 forks/%: forks
 	git clone git@github.com:conao3/$*.git forks/$*
 
