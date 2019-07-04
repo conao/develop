@@ -42,17 +42,6 @@ repos/%: repos
 forks/%: forks
 	git clone git@github.com:conao3/$*.git forks/$*
 
-shallow-clone:
-	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
-	  jq -r '.[] | .name' | \
-	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && if [ ! -d %% ]; then git clone --max-depth 1 git@github.com:conao3/%%.git; fi"
-
-unshallow:
-	-find repos -maxdepth 1 -type d | \
-	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
-	    "cd %% && git fetch --unshallow"
-
 pull:
 	-find repos git -maxdepth 1 -type d | \
 	  $(XARGS) -n1 -P$(P) -t -I%% bash -c \
