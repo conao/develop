@@ -9,7 +9,7 @@ DIRS := .make repos forks git conao3
 
 ##################################################
 
-.PHONY: all unshallow pull push clean
+.PHONY: all clone pull push status clean-all clean
 
 all: clone
 
