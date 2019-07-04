@@ -30,12 +30,16 @@ clone: .make/github-cache
 repos/%:; git clone git@github.com:conao3/$*.git repos/$*
 forks/%:; git clone git@github.com:conao3/$*.git forks/$*
 
+##############################
+
 pull: repos forks
 	$(MAKE) .make-pull TARGET="$(shell find repos forks -depth 1)"
 
 .make-pull: $(TARGET:%=.make-pull-worker-%)
 .make-pull-worker-repos/%:; cd repos/$* && git pull origin `git symbolic-ref --short HEAD`
 .make-pull-worker-forks/%:; cd forks/$* && git pull origin `git symbolic-ref --short HEAD`
+
+##############################
 
 push: repos forks
 	$(MAKE) .make-push TARGET="$(shell find repos forks -depth 1)"
