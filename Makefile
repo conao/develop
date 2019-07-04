@@ -12,7 +12,8 @@ TOPDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 XARGS := xargs -t $(shell if xargs -r > /dev/null 2>&1; then echo "-r"; else echo ""; fi)
 P ?= 12
 
-DIRS := .make repos git conao3
+TARGET =
+DIRS := .make repos forks git conao3
 
 ##################################################
 
@@ -26,11 +27,21 @@ $(DIRS):
 
 ##############################
 
-clone:
-	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
-	  jq -r '.[] | .name' | \
-	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
-	    "cd repos && if [ ! -d %% ]; then git clone git@github.com:conao3/%%.git; fi"
+debug:
+	echo 'debug-done'
+
+clone: .make/github-cache
+	$(MAKE) .make-clone-repos TARGET="$(shell cat $< | jq -r '.[] | select(.fork==false).name')"
+	$(MAKE) .make-clone-forks TARGET="$(shell cat $< | jq -r '.[] | select(.fork==true).name')"
+
+.make-clone-repos: $(TARGET:%=repos/%)
+.make-clone-forks: $(TARGET:%=forks/%)
+
+repos/%: repos
+	git clone git@github.com:conao3/$*.git repos/$*
+
+forks/%: forks
+	git clone git@github.com:conao3/$*.git forks/$*
 
 shallow-clone:
 	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
@@ -64,3 +75,6 @@ link: conao3 clone
 clean:
 	date +%Y-%m-%d:%H-%M-%S | \
 	  $(XARGS) -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
+
+.make/github-cache: .make
+	curl https://api.github.com/users/conao3/repos\?per_page=1000 > $@
