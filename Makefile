@@ -27,9 +27,6 @@ $(DIRS):
 
 ##############################
 
-debug:
-	echo 'debug-done'
-
 clone: .make/github-cache
 	$(MAKE) .make-clone-repos TARGET="$(shell cat $< | jq -r '.[] | select(.fork==false).name')"
 	$(MAKE) .make-clone-forks TARGET="$(shell cat $< | jq -r '.[] | select(.fork==true).name')"
