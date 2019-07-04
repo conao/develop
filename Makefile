@@ -45,6 +45,15 @@ push:
 
 ##############################
 
+status:
+	$(MAKE) .make-status TARGET="$(shell find repos forks -depth 1)"
+
+.make-status: repos forks $(TARGET:%=.make-status-worker-%)
+.make-status-worker-repos/%:; cd repos/$* && git status
+.make-status-worker-forks/%:; cd forks/$* && git status
+
+##############################
+
 $(DIRS):
 	mkdir -p $@
 
