@@ -15,11 +15,6 @@ all: clone
 
 ##############################
 
-$(DIRS):
-	mkdir -p $@
-
-##############################
-
 clone: .make/github-cache
 	$(MAKE) .make-clone-repos TARGET="$(shell cat $< | jq -r '.[] | select(.fork==false).name')"
 	$(MAKE) .make-clone-forks TARGET="$(shell cat $< | jq -r '.[] | select(.fork==true).name')"
@@ -50,12 +45,17 @@ push: repos forks
 
 ##############################
 
+$(DIRS):
+	mkdir -p $@
+
+.make/github-cache: .make
+	curl https://api.github.com/users/conao3/repos\?per_page=1000 > $@
+
+##############################
+
 clean-all: clean
 	date +%Y-%m-%d:%H-%M-%S | \
 	  $(XARGS) -I%% bash -c "mkdir trash-%% && mv -f $(DIRS) trash-%%"
 
 clean:
 	rm -rf .make
-
-.make/github-cache: .make
-	curl https://api.github.com/users/conao3/repos\?per_page=1000 > $@
