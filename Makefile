@@ -22,7 +22,7 @@ clone: .make/github-cache
 .make-clone-repos: repos $(TARGET:%=repos/%)
 .make-clone-forks: forks $(TARGET:%=forks/%)
 
-repos/%:; git clone git@github.com:conao3/$*.git repos/$*
+repos/%:; git clone git@github.com:conao3/$*.git $@
 forks/%:
 	git clone https://github.com/`curl https://api.github.com/repos/conao3/$* | jq -r '.parent.full_name'`.git $@
 	cd $@; git remote add conao3 git@github.com:conao3/$*.git
