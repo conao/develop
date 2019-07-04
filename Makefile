@@ -54,12 +54,6 @@ push: repos forks
 .make-push-worker-repos/%:; cd repos/$* && git push origin `git symbolic-ref --short HEAD`
 .make-push-worker-forks/%:; cd forks/$* && git push origin `git symbolic-ref --short HEAD`
 
-link: conao3 clone
-	curl https://api.github.com/users/conao3/repos\?per_page=1000 | \
-	  jq -r '.[] | select(.fork==false) | .name' | \
-	  $(XARGS) -n1 -P$(P) -t -I %% bash -c \
-	    "cd $< && ln -s ../repos/%%"
-
 ##############################
 
 clean:
