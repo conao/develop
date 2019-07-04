@@ -1,1 +1,0 @@
-../repos/shogi-detect.py
