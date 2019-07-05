@@ -86,6 +86,6 @@ clean:
 
 clean-all: clean $(shell date +"trash/%Y-%m-%d_%H-%M-%S")
 
-trash/%:
+trash/%: trash
 	mkdir $@
 	mv repos forks git $@
