@@ -35,8 +35,12 @@ It could be help to manage your GitHub repository with some modifications.
 Only clone it and ~make~ someting showed below.
 #+begin_src sh
   cd
-  git clone https://github.com/conao3/develop.git dev
+  git clone https://github.com/conao3/dev.git
+  cd dev
+  make -j
 #+end_src
+
+#+RESULTS:
 
 ~.make~, ~repos~ is managed Makefile
 so should not add and remove folders.
