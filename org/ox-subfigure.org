@@ -1,0 +1,9 @@
+#+title: test
+
+* Test section
+#+NAME: fig:hello
+#+CAPTION: Use figure/subfigure instead of tabular, remember to set =:environment=
+#+ATTR_LATEX: :environment subfigure :width 0.4\textwidth :align c
+| [[./img/conao-icon.jpg]]                                    | <<fig:hello_subfigure>> tttttt                          |
+| zzzzz                                                   | [[./img/garario-icon.jpg]]                                  |
+| keepaspectratio,height=\textheight,width=0.98\linewidth | keepaspectratio,height=\textheight,width=0.98\linewidth |
