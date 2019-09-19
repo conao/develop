@@ -8,13 +8,3 @@ int main() {
   std::cout << a - b << std::endl;
   return 0;
 }
-asdf
-asdf
-asdf
-asdf
-asdf
-asdf
-asdf
-asdf
-asdf
-asdf
