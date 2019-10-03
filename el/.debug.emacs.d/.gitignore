@@ -1,0 +1,60 @@
+# backupfiles
+.cache/
+backup/
+history/
+undohist/
+
+# setting files
+timelog
+vip
+viper
+ido.last
+kkcrc
+quickurls
+places
+shadows
+shadow_todo
+strokes
+notes
+type-break
+abbrev_defs
+projectile-bookmarks.eld
+persp-confs/
+
+# unnesesary files
+flycheck_*
+.emacs.desktop*
+.session
+.recentf
+.mc-lists.el
+recentf
+elscreen
+ac-comphist.dat
+srecode-map.el
+bookmarks
+network-security.data
+tramp
+
+# use-package-update
+.last-package-update-day
+
+# download packages
+elpa/
+el-get/
+straight/
+site-lisp/
+auto-install/
+
+# cookie files
+url/
+
+# compiled files
+*.elc
+
+# annoying comstom file
+custom.el
+
+# cask temporally folder
+/.cask
+
+
