@@ -1,8 +1,9 @@
 # conao3's global .gitignore at
 # http://dotfiles.conao3.com/gitignore
 
-# binary
-.out
+# Whitelist pattern
+*
+!*/
 
 # make working foldor
 /.make
@@ -12,8 +13,6 @@
 /repos
 /forks
 /trash
-
-# trash folder
 /trash-*
 
 # tmp folder
