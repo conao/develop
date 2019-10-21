@@ -4,6 +4,7 @@
 # Whitelist pattern
 *
 !*/
+!.gitignore
 
 # make working foldor
 /.make

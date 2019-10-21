@@ -1,0 +1,4 @@
+# allow staging all files
+!*
+
+*~
