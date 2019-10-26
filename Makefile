@@ -31,9 +31,9 @@ all: clone
 
 ##############################
 
-clone: .make/github-cache
-	$(MAKE) .make-clone-repos TARGET="$(shell cat $< | jq -r '.[] | select(.fork==false).name')"
-	$(MAKE) .make-clone-forks TARGET="$(shell cat $< | jq -r '.[] | select(.fork==true).name')"
+clone: .make/github-cache-1 .make/github-cache-2 .make/github-cache-3
+	$(MAKE) .make-clone-repos TARGET="$(shell cat $^ | jq -r '.[] | select(.fork==false).name')"
+	$(MAKE) .make-clone-forks TARGET="$(shell cat $^ | jq -r '.[] | select(.fork==true).name')"
 
 .make-clone-repos: repos $(TARGET:%=repos/%)
 .make-clone-forks: forks $(TARGET:%=forks/%)
@@ -76,8 +76,8 @@ status:
 $(DIRS):
 	mkdir -p $@
 
-.make/github-cache: .make
-	curl https://api.github.com/users/conao3/repos\?per_page=1000 > $@
+.make/github-cache-%: .make
+	curl https://api.github.com/users/conao3/repos\?per_page=100\&page=$* > $@
 
 ##############################
 
