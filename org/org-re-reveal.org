@@ -1,0 +1,67 @@
+#+title: org-re-reveal
+
+* Introduction
+Forge allows you to work with Git forges, such as Github and Gitlab,
+from the comfort of Magit and the rest of Emacs.
+
+Forge fetches issues, pull-requests and other data using the forge’s
+API and stores that in a local database. Additionally it fetches the
+pull-request references using Git. Forge implements various features
+that use this data but the database and pull-request refs can also be
+used by third-party packages.
+
+* Supported Forges and Hosts
+Currently Forge supports two forges and three more forges
+partially. Additionally it supports four semi-forges. Support for more
+forges and semi-forges can and will be added.
+
+Both forges and semi-forges provide web interfaces for Git
+repositories. Forges additionally support pull-requests and issues and
+make those and other information available using an API.
+
+When a forge is only partially supported, then that means that only
+the functionality that does not require the API is implemented, or in
+other words, that the forge is only supported as a semi-forge.
+
+A host is a particular instance of a forge. For example the hosts
+https://gitlab.com and https://salsa.debian.org are both instances of
+the Gitlab forge. Forge supports some well known hosts out of the box
+and additional hosts can easily be supported by adding entries to the
+option forge-alist.
+
+For more details about the caveats mentioned below (and some others)
+also see Getting Started.
+
+** Supported Forges
+
+*** Github
+Forge’s support for Github can be considered the "reference
+implementation". Support for other forges can lag behind a bit.
+
+**** Github Caveats
+
+- Forge uses the Github GraphQL API when possible but has to fall back
+  to use the REST API in many cases because the former is still rather
+  incomplete.
+- Forge depends on the updated_at field being updated when
+  appropriate. For Github pull-requests at least, that is not always
+  done.
+
+**** Github Hosts
+
+https://github.com
+
+*** Gitlab
+
+**** Gitlab Caveats
+
+- Forge cannot use Ghub’s setup wizard to create the API token because
+  the Gitlab API does not support doing that.
+- Forge cannot provide notifications because the Gitlab API does not
+  expose those.
+
+**** Gitlab Hosts
+
+- https://gitlab.com
+- https://salsa.debian.org
+- https://framagit.org
