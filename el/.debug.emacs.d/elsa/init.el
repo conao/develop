@@ -22,4 +22,15 @@
 
 (load (locate-user-emacs-file "../essentials.el"))
 
-(leaf elsa)
+(leaf flycheck
+  :ensure t
+  ;; :custom ((global-flycheck-mode . t))
+  :config
+  (leaf flycheck-elsa
+    :ensure t
+    :hook ((flycheck-mode-hook . flycheck-elsa-setup))
+    :config
+    (leaf elsa-font-lock            ; elsa built-in
+      :require t
+      :defun (elsa-setup-font-lock)
+      :config (elsa-setup-font-lock))))
