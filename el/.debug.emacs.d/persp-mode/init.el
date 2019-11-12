@@ -1,29 +1,31 @@
-(prog1 "Change user-emacs-directory"
-  ;; enable debug
-  (setq debug-on-error  t
-        init-file-debug t)
+;; ~/.debug.emacs.d/persp-mode/init.el
 
-  ;; you can run like 'emacs -q -l ~/hoge/init.el'
-  (when load-file-name
-    (setq user-emacs-directory
-          (expand-file-name (file-name-directory load-file-name)))))
+;; you can run like 'emacs -q -l ~/.debug.emacs.d/{{pkg}}/init.el'
+(when load-file-name
+  (setq user-emacs-directory
+        (expand-file-name (file-name-directory load-file-name))))
 
-(prog1 "Load use-package.el"
-  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-                           ("gnu"   . "https://elpa.gnu.org/packages/")
-                           ("org"   . "https://orgmode.org/elpa/")))
-  (package-initialize)
+(prog1 "prepare leaf"
+  (prog1 "package"
+    (custom-set-variables
+     '(package-archives '(("org"   . "https://orgmode.org/elpa/")
+                          ("melpa" . "https://melpa.org/packages/")
+                          ("gnu"   . "https://elpa.gnu.org/packages/"))))
+    (package-initialize))
 
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (require 'use-package))
+  (prog1 "leaf"
+    (unless (package-installed-p 'leaf)
+      (package-refresh-contents)
+      (package-install 'leaf)))
 
-(use-package use-package
-  :custom ((use-package-expand-minimally t)
-           (use-package-hook-name-suffix "")))
+  (prog1 "use-package"
+    (unless (package-installed-p 'use-package)
+      (package-refresh-contents)
+      (package-install 'use-package))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(load (locate-user-emacs-file "../essential.el"))
 
 (use-package ivy
   :ensure t
