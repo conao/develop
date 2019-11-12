@@ -1,6 +1,6 @@
 # Whitelist pattern
 *
 !*/
-!init.el
-!essentials.el
-!.gitignore
+!/*/.gitignore
+!/*/init.el
+!/essentials.el
