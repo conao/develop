@@ -20,7 +20,7 @@
 
 
 
-(load (locate-user-emacs-file "../essential.el"))
+(load (locate-user-emacs-file "../essentials.el"))
 
 (leaf navbar
   :el-get conao3/navbar.el

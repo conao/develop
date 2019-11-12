@@ -20,7 +20,7 @@
 
 
 
-(load (locate-user-emacs-file "../essential.el"))
+(load (locate-user-emacs-file "../essentials.el"))
 
 (defvar bootstrap-version)
 (let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
