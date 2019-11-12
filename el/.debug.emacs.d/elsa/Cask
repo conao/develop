@@ -1,0 +1,7 @@
+(source gnu)
+(source melpa)
+
+(package "init" "0.0.1" "Emacs test")
+
+(development
+ (depends-on "elsa"))
