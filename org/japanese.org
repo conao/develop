@@ -1,0 +1,40 @@
+#+title: [正式リリース]leaf.elで雑然としたEmacs設定ファイル「init.el」をクリーンにする
+#+author: conao3
+#+date: <2019-11-16 Sat>
+#+options: ^:{}
+#+LATEX_CLASS_OPTIONS: [uplatex, dvipdfmx]
+# #+latex_class: jsarticle
+
+* Configure                                                        :noexport:
+#+begin_src emacs-lisp
+  (prog1 'org
+    (setq-local org-export-date-timestamp-format "%Y-%m-%d")
+    (setq-local org-latex-classes '(("jsarticle"
+                                     "\\documentclass[uplatex, dvipdfmx]{jsarticle}"
+                                     ("\\section{%s}"       . "\\section*{%s}")
+                                     ("\\subsection{%s}"    . "\\subsection*{%s}")
+                                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+                                     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}"))
+                                    ("beamer"
+                                     "\\documentclass[dvipdfmx,12pt]{beamer}"
+                                     ("\\section{%s}"       . "\\section*{%s}")
+                                     ("\\subsection{%s}"    . "\\subsection*{%s}")
+                                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                     ("\\paragraph{%s}"     . "\\paragraph*{%s}")
+                                     ("\\subparagraph{%s}"  . "\\subparagraph*{%s}")))))
+#+end_src
+
+#+RESULTS:
+: org
+
+* lorem ipsum
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\Delta
+* leaf
+** 
+*** 
+**** 
+***** TODO [#B] 
+***** DONE 
+CLOSED: [2019-11-17 日 20:19]
