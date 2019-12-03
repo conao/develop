@@ -13,17 +13,21 @@
   (setq user-emacs-directory
         (expand-file-name (file-name-directory load-file-name))))
 
-(prog1 "leaf"
-  (prog1 "install leaf"
-    (custom-set-variables
-     '(package-archives '(("org"   . "https://orgmode.org/elpa/")
-                          ("melpa" . "https://melpa.org/packages/")
-                          ("gnu"   . "https://elpa.gnu.org/packages/"))))
-    (package-initialize)
-    (unless (package-installed-p 'leaf)
-      (package-refresh-contents)
-      (package-install 'leaf)))
+(eval-when-compile
+  (setq user-emacs-directory
+        (expand-file-name (file-name-directory default-directory))))
 
+(eval-and-compile
+  (prog1 "leaf"
+    (prog1 "install leaf"
+      (custom-set-variables
+       '(package-archives '(("org"   . "https://orgmode.org/elpa/")
+                            ("melpa" . "https://melpa.org/packages/")
+                            ("gnu"   . "https://elpa.gnu.org/packages/"))))
+      (package-initialize)
+      (unless (package-installed-p 'leaf)
+        (package-refresh-contents)
+        (package-install 'leaf))))
   (leaf leaf-keywords
     :ensure t
     :config
@@ -42,6 +46,7 @@
 (leaf magit
   :when (version<= "25.1" emacs-version)
   :ensure t
+  :defun (magit-commit-create)
   :preface
   (defun c/git-commit-a ()
     "Commit after add anything."
