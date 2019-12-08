@@ -46,7 +46,7 @@
         )
       '((custom-theme-set-faces
          theme-name
-         `(default ((,class (:foreground ,base2 :background ,base03))))
+         ;; `(default ((,class (:foreground ,base2 :background ,base03))))
          ;; `(vertical-border ((,class (:foreground ,base03))))
          ;; `(mode-line ((,class (:foreground ,base2 :background ,base02))))
          ;; `(mode-line-inactive ((,class (:foreground ,base0 :background ,base03))))
