@@ -21,7 +21,7 @@
 
 
 (load (locate-user-emacs-file "../essentials.el"))
-
+(setq debug-on-quit t)
 (leaf skk
   :ensure ddskk
   :require t skk-study
