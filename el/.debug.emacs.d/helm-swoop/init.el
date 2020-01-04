@@ -36,7 +36,7 @@
     :require t
     ;; :ensure t
     :bind (("M-i"     . helm-swoop)
-           ("M-C-i"     . helm-swoop-back-to-last-point)
+           ("M-C-i"   . helm-swoop-back-to-last-point)
            ("C-c M-i" . helm-multi-swoop)
            ("C-x M-i" . helm-multi-swoop-all)
            (:isearch-mode-map ("M-i" . helm-swoop-from-isearch))
