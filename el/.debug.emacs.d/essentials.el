@@ -28,39 +28,14 @@
 
 (leaf *initialize-emacs
   :custom (((debug-on-error  . t)
-            (init-file-debug . t)))
-  :config
-  (defmacro p (form)
-    "Output expand  given FORM."
-    `(progn
-       (pp (macroexpand-1 ',form))
-       nil))
-
-  (defmacro po (form)
-    "Output expand given FORM."
-    `(progn
-       (pp ,form)
-       nil))
-
-  (defmacro pl (form &optional stream)
-    "Output list"
-    `(progn
-       (with-temp-buffer
-         (insert (prin1-to-string ,form))
-         (goto-char (point-min))
-         (forward-char)
-         (ignore-errors
-           (while t (forward-sexp) (insert "\n")))
-         (delete-char -1)
-         (princ (buffer-substring-no-properties (point-min) (point-max))
-                (or ,stream standard-output))
-         (princ "\n"))
-       nil)))
+            (init-file-debug . t))))
 
 (leaf autorevert
   :doc "revert buffers when files on disk change"
   :custom ((auto-revert-interval . 1)
            (global-auto-revert-mode . t)))
+
+(leaf ppp :ensure t)
 
 (leaf real-auto-save
   :ensure t
