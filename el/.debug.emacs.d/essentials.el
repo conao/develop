@@ -44,5 +44,24 @@
   :hook ((find-file-hook . real-auto-save-mode))
   :config (real-auto-save-activate-advice))
 
+(leaf company
+  :ensure t
+  :leaf-defer nil
+  :bind ((company-active-map
+          ("M-n" . nil)
+          ("M-p" . nil)
+          ("C-s" . company-filter-candidates)
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)
+          ("<tab>" . company-complete-selection))
+         (company-search-map
+          ("C-n" . company-select-next)
+          ("C-p" . company-select-previous)))
+  :custom ((company-tooltip-limit         . 12)
+           (company-idle-delay            . 0)
+           (company-minimum-prefix-length . 1)
+           (company-transformers          . '(company-sort-by-occurrence))
+           (global-company-mode           . t)))
+
 (provide 'essentials)
 ;;; essentials.el ends here
