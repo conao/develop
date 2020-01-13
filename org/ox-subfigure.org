@@ -8,6 +8,14 @@
 | file:material_histeresis.png                    | file:dry_friction.png             | file:viscous_damper.png               |
 | <<fig:material_histeresis>> Material hysteresis | <<fig:dry_friction>> Dry friction | <<fig:viscous_damper>> Viscous damper |
 
+
+| a | b |
+| c | d |
+
+#+ATTR_LATEX: :environment subfigure :float multicolumn
+| file:material_histeresis.png                    | file:dry_friction.png             | file:viscous_damper.png               |
+| <<fig:material_histeresis>> Material hysteresis | <<fig:dry_friction>> Dry friction | <<fig:viscous_damper>> Viscous damper |
+
 * COMMENT Test section
 #+NAME: fig:hello
 #+CAPTION: Use figure/subfigure instead of tabular, remember to set =:environment=
