@@ -23,9 +23,13 @@
 (load (locate-user-emacs-file "../essentials.el"))
 
 (leaf helm
-  :ensure t
+  :load-path `,(locate-user-emacs-file "site-lisp/helm")
+  ;; :ensure t
   :require helm-config
   :leaf-defer nil
+  :init
+  (leaf async :require t :load-path* "site-lisp/async")
+  (leaf popup :require t :load-path* "site-lisp/popup")
   :bind (("M-x"     . helm-M-x)
          ("C-x r b" . helm-filtered-bookmarks)
          ("C-x C-f" . helm-find-files))
@@ -33,8 +37,8 @@
   :config
   (leaf helm-swoop
     :load-path `,(locate-user-emacs-file "site-lisp/helm-swoop")
-    :require t
     ;; :ensure t
+    :require t
     :bind (("M-i"     . helm-swoop)
            ("M-C-i"   . helm-swoop-back-to-last-point)
            ("C-c M-i" . helm-multi-swoop)
