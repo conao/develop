@@ -3,7 +3,7 @@
 (source gnu)
 (source melpa)
 
-(package-file "dired-git.el")
+(package-file "elisp-template.el")
 
 (development
  (depends-on "buttercup"))

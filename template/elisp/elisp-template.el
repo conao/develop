@@ -1,9 +1,12 @@
-;;; package-test.el --- Test definitions for package  -*- lexical-binding: t; -*-
+;;; elisp-template.el ---   -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019  Naoya Yamashita
+;; Copyright (C) 2020  Naoya Yamashita
 
 ;; Author: Naoya Yamashita <conao3@gmail.com>
-;; URL: https://github.com/conao3/package.el
+;; Version: 0.0.1
+;; Keywords: convenience
+;; Package-Requires: ((emacs "25.1"))
+;; URL: https://github.com/conao3/elisp-template.el
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -20,22 +23,21 @@
 
 ;;; Commentary:
 
-;; Test definitions for `package'.
+;;
 
 
 ;;; Code:
 
-(require 'buttercup)
-(require 'package)
+(defgroup elisp-template nil
+  ""
+  :prefix "elisp-template-"
+  :group 'tools
+  :link '(url-link :tag "Github" "https://github.com/conao3/elisp-template.el"))
 
-(describe "A suite"
-  (it "contains a spec with an expectation"
-    (expect t :to-be t)))
-
-;; (provide 'package-test)
+(provide 'elisp-template)
 
 ;; Local Variables:
 ;; indent-tabs-mode: nil
 ;; End:
 
-;;; package-test.el ends here
+;;; elisp-template.el ends here
